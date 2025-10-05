@@ -2,6 +2,7 @@ package com.abstractednick.zennyledger.di
 
 import android.content.Context
 import androidx.room.Room
+import com.abstractednick.zennyledger.data.dao.ReminderDao
 import com.abstractednick.zennyledger.data.dao.TransactionDao
 import com.abstractednick.zennyledger.data.database.ZennyLedgerDatabase
 import dagger.Module
@@ -41,5 +42,13 @@ object DatabaseModule {
     @Provides
     fun provideTransactionDao(database: ZennyLedgerDatabase): TransactionDao {
         return database.transactionDao()
+    }
+    
+    /**
+     * Provides the ReminderDao
+     */
+    @Provides
+    fun provideReminderDao(database: ZennyLedgerDatabase): ReminderDao {
+        return database.reminderDao()
     }
 }

@@ -2,31 +2,24 @@ package com.abstractednick.zennyledger.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.Date
 
 /**
  * Transaction entity representing a financial transaction in the database
+ * 
+ * @property id Primary key, auto-generated
+ * @property amount Transaction amount
+ * @property currency Currency code (e.g., "USD", "EUR")
+ * @property type Transaction type - "debit" or "credit"
+ * @property timestamp Unix timestamp in milliseconds
+ * @property category Transaction category (e.g., "Food", "Transport", "Salary")
  */
 @Entity(tableName = "transactions")
-data class Transaction(
+data class TransactionEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val amount: Double,
     val currency: String,
-    val description: String,
-    val category: String,
-    val type: TransactionType,
-    val date: Date,
-    val accountId: String,
-    val createdAt: Date = Date(),
-    val updatedAt: Date = Date()
+    val type: String, // "debit" or "credit"
+    val timestamp: Long,
+    val category: String
 )
-
-/**
- * Enum representing the type of transaction
- */
-enum class TransactionType {
-    INCOME,
-    EXPENSE,
-    TRANSFER
-}
